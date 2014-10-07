@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script
+src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false">
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+
+<style>
+.icon_Size{
+  width:20px;
+  height:20px;
+}
+</style>
+
+<script>
+function MenuControl(controlDiv, map) {
+  controlDiv.style.padding = '25px';
+  controlDiv.style.paddingLeft = '20px';
+  controlDiv.style.width = '80px';
+  controlDiv.style.height = '100px';
+
+  
+
+
+  var controlUI = document.createElement('div');
+  //controlUI.href = "#overlayPanel";
+  //controlUI.style.href = "#overlayPanel";
+  controlUI.setAttribute("href", "#overlayPanel");
+  controlUI.style.backgroundColor = 'yellow';
+  controlUI.style.border = '1px solid';
+  controlUI.style.cursor = 'pointer';
+  controlUI.style.textAlign = 'center';
+  controlUI.title = 'Back To Menu';
+  controlDiv.appendChild(controlUI);
+
+  var controlSpace = document.createElement('a');
+  controlSpace.setAttribute("href", "#overlayPanel");
+  controlUI.appendChild(controlSpace);
+
+  var controlText = document.createElement('div');
+  //controlText.style.href = "#overlayPanel";
+  controlText.setAttribute("href", "#overlayPanel");
+  controlText.style.fontFamily = 'Arial';
+  controlText.style.fontSize = '12px';
+  controlText.style.paddingLeft = '4px';
+  controlText.style.paddingRight = '4px';
+  controlText.innerHTML = 'Menu';
+  controlSpace.appendChild(controlText);
+
+  /*
+  google.maps.event.addDomListener(controlUI, 'click', function(){
+    //$(this).repalcewith(#overlayPanel);
+    //document.getElementById("overlayPanel");
+    //$('a').href("#overlayPanel");
+    document.getElementById("overlayPanel");
+  });
+  */
+}
+
+function BackControl(controlDiv, map) {
+  controlDiv.style.padding = '25px';
+  controlDiv.style.paddingLeft = '20px';
+  //controlDiv.style.paddingRight = '100px';
+  controlDiv.style.width = '80px';
+  controlDiv.style.height = '100px';
+
+  var controlUI = document.createElement('div');
+  //controlUI.href = "#overlayPanel";
+  //controlUI.style.href = "#overlayPanel";
+  //controlUI.setAttribute("href", "index.html");
+  controlUI.style.backgroundColor = 'yellow';
+  controlUI.style.border = '1px solid';
+  controlUI.style.cursor = 'pointer';
+  controlUI.style.textAlign = 'center';
+  controlUI.title = 'Back To Menu';
+  controlDiv.appendChild(controlUI);
+
+  //var controlSpace = document.createElement('a');
+  //controlSpace.setAttribute("href", "index.html");
+  //controlUI.appendChild(controlSpace);
+
+  var controlText = document.createElement('div');
+  //controlText.style.href = "#overlayPanel";
+  //controlText.setAttribute("href", "index.html");
+  controlText.style.fontFamily = 'Arial';
+  controlText.style.fontSize = '12px';
+  controlText.style.paddingLeft = '4px';
+  controlText.style.paddingRight = '4px';
+  controlText.innerHTML = 'Back';
+  controlUI.appendChild(controlText);
+  //controlSpace.appendChild(controlText);
+
+  google.maps.event.addDomListener(controlUI, 'click', function(){
+    //$(this).repalcewith(#overlayPanel);
+    //document.getElementById("overlayPanel");
+    //$('a').href("#overlayPanel");
+    //document.getElementById("overlayPanel");
+    window.location.href = "index.html";
+  });
+
+}
+
+
+var myCenter=new google.maps.LatLng(42.0561438,-87.67617702);
+
+function initialize() {
+var mapProp = {
+  center:myCenter,
+  zoom:15,
+  mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+
+var mapDiv = document.getElementById("googleMap");
+
+var map=new google.maps.Map(mapDiv,mapProp);
+
+var marker=new google.maps.Marker({
+  position:myCenter,
+  icon:'111111.png'
+  //icon.setAttribute("width","10px");
+  //icon.setAttribute("height","10px");
+  });
+//marker.setAttribute("width","10px");
+//marker.setAttribute("height","10px");
+//marker.style.width = '10px';
+//marker.style.height = '10px';
+
+marker.setMap(map);
+
+  var menuControlDiv = document.createElement('div');
+  var menuControl = new MenuControl(menuControlDiv, map);
+//  homeControlDiv.index = 1;
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(menuControlDiv);
+
+  var backControlDiv = document.createElement('div');
+  var backControl = new BackControl(backControlDiv, map);
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(backControlDiv);
+
+
+
+var myCity = new google.maps.Circle({
+  center:myCenter,
+  radius:300,
+  strokeColor:"#0000FF",
+  strokeOpacity:0.8,
+  strokeWeight:2,
+  fillColor:"#0000FF",
+  fillOpacity:0.4
+  });
+
+myCity.setMap(map);
+
+var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading">EECS 394                 </h1>'+
+      '<div id="bodyContent">'+
+      '<p><b>EECS 394</b></p> <p>Norris Center</p> <p><b>Date: 09/27</b></p>'+
+      '<p> You have <a href="#">6</a> friends going                     </p>'+
+      '</div>'+
+      '</div>';
+
+var infowindow = new google.maps.InfoWindow({
+  content: contentString
+  
+  });
+
+google.maps.event.addListener(marker, 'click', function() {
+  infowindow.open(map,marker);
+  });
+
+
+}
+
+function myClick() {
+  //location.href("#overlayPanel");
+  //document.getElementById("elemt").href;
+  //document.getElementById("overlayPanel").addEventListener("click");
+  //$('a').href(#overlayPanel);
+
+
+
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+
+</head>
+
+<body>
+<div id="googleMap" style="position:relative;width:320px;height:568px;">
+</div>
+
+
+<div data-role="panel" id="overlayPanel" data-display="overlay"> 
+    <h2>Selections:</h2>
+    <ul data-role="listview" data-filter="true" data-filter-placeholder="Search study group" data-inset="true">
+      <li><a href="#">EECS 394</a></li>
+      <li><a href="#">EECS 343</a></li>
+      <li><a href="#">Operation System</a></li>
+      <li><a href="#">Database</a></li>
+      <li><a href="#">214 Data Structure</a></li>
+      <li><a href="#">HTML/CSS/JavaScript</a></li>
+    </ul>
+    <a href="#googleMap" data-rel="close" ></a>
+</div> 
+
+
+</body>
+</html>
