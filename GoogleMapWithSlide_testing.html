@@ -9,6 +9,8 @@ src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 
 <style>
 .icon_Size{
@@ -102,9 +104,49 @@ function BackControl(controlDiv, map) {
 }
 
 
-var myCenter=new google.maps.LatLng(42.0561438,-87.67617702);
+//var myCenter=new google.maps.LatLng(42.0561438,-87.67617702);
+//var myCenter = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 
 function initialize() {
+  var myCenter;
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      myCenter = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+
+      var infowindow = new google.maps.InfoWindow({
+        map: map,
+        position: myCenter,
+        content: 'Location found using HTML5.'
+      });
+
+      map.setCenter(myCenter);
+    }, function() {
+      handleNoGeolocation(true);
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleNoGeolocation(false);
+  }
+
+
+function handleNoGeolocation(errorFlag) {
+  if (errorFlag) {
+    var content = 'Error: The Geolocation service failed.';
+  } else {
+    var content = 'Error: Your browser doesn\'t support geolocation.';
+  }
+
+  var options = {
+    map: map,
+    position: new google.maps.LatLng(60, 75),
+    content: content
+  };
+
+  var infowindow = new google.maps.InfoWindow(options);
+  map.setCenter(options.position);
+}
+
+
   var mapProp = {
     center:myCenter,
     zoom:15,
@@ -129,7 +171,7 @@ function initialize() {
 //marker.style.width = '10px';
 //marker.style.height = '10px';
 
-marker.setMap(map);
+//marker.setMap(map);
 
   var menuControlDiv = document.createElement('div');
   var menuControl = new MenuControl(menuControlDiv, map);
@@ -180,9 +222,9 @@ var infowindow = new google.maps.InfoWindow({
   
   });
 
-google.maps.event.addListener(marker, 'click', function() {
-  infowindow.open(map,marker);
-  });
+//google.maps.event.addListener(marker, 'click', function() {
+//  infowindow.open(map,marker);
+//  });
 
 
 }
