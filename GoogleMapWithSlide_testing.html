@@ -111,9 +111,9 @@ function BackControl(controlDiv, map) {
 
 //var myCenter=new google.maps.LatLng(42.0561438,-87.67617702);
 //var myCenter = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-
+var myCenter;
 function initialize() {
-  var myCenter;
+  
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       myCenter = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
