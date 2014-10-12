@@ -8,7 +8,8 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
 
-<script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 <!--  
 <script
@@ -129,12 +130,12 @@ function initialize() {
       '</div>';
 
       var infowindow = new google.maps.InfoWindow({
-        map: map,
-        position: myCenter,
+        //map: map,
+        //position: myCenter,
         content: contentString
       });
 
-      //map.setCenter(myCenter);
+      map.setCenter(myCenter);
 
       google.maps.event.addListener(marker, 'click', function() {
       infowindow.open(map,marker);
