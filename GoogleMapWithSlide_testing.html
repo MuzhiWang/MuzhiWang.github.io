@@ -125,6 +125,12 @@ function initialize() {
       });
 
       map.setCenter(myCenter);
+
+      var marker=new google.maps.Marker({
+      position:myCenter,
+      icon:'111111.png'
+      });
+      marker.setMap(map);
     }, function() {
       handleNoGeolocation(true);
     });
@@ -132,6 +138,7 @@ function initialize() {
     // Browser doesn't support Geolocation
     handleNoGeolocation(false);
   }
+
 
 
 function handleNoGeolocation(errorFlag) {
@@ -166,13 +173,7 @@ function handleNoGeolocation(errorFlag) {
   var map=new google.maps.Map(mapDiv,mapProp);
 
   //myCenter = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-  var marker=new google.maps.Marker({
-  position:myCenter,
-  icon:'111111.png'
-  });
 
-
-marker.setMap(map);
 
   var menuControlDiv = document.createElement('div');
   var menuControl = new MenuControl(menuControlDiv, map);
