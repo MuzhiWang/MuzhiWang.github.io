@@ -134,7 +134,11 @@ function initialize() {
         content: contentString
       });
 
-      map.setCenter(myCenter);
+      //map.setCenter(myCenter);
+
+      google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+      });
 
       var marker=new google.maps.Marker({
       position:myCenter,
@@ -219,9 +223,6 @@ function myClick() {
   //document.getElementById("elemt").href;
   //document.getElementById("overlayPanel").addEventListener("click");
   //$('a').href(#overlayPanel);
-
-
-
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
