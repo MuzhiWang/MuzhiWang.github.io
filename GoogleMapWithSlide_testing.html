@@ -168,15 +168,15 @@ function handleNoGeolocation(errorFlag) {
   var marker=new google.maps.Marker({
   position:myCenter,
   icon:'111111.png'
-  //icon.setAttribute("width","10px");
-  //icon.setAttribute("height","10px");
+  icon.setAttribute("width","10px");
+  icon.setAttribute("height","10px");
   });
-//marker.setAttribute("width","10px");
-//marker.setAttribute("height","10px");
-//marker.style.width = '10px';
-//marker.style.height = '10px';
+marker.setAttribute("width","10px");
+marker.setAttribute("height","10px");
+marker.style.width = '10px';
+marker.style.height = '10px';
 
-//marker.setMap(map);
+marker.setMap(map);
 
   var menuControlDiv = document.createElement('div');
   var menuControl = new MenuControl(menuControlDiv, map);
