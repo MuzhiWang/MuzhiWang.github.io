@@ -137,15 +137,15 @@ function initialize() {
 
       map.setCenter(myCenter);
 
-      google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(map,marker);
-      });
-
       var marker=new google.maps.Marker({
       position:myCenter,
       icon:'111111.png'
       });
       marker.setMap(map);
+
+      google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+      });
 
       var myCity = new google.maps.Circle({
       center:myCenter,
