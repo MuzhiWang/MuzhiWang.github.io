@@ -71,8 +71,7 @@ function myFunction() {
       
       //var point = new Parse.GeoPoint({latitude: lat, longitude: lon});
       //alert("what the hell!!!");
-      user.set("geoLa", lat);
-      user.set("geoLo", lon);
+      
       //user.set("geolocation", point);
       //alert("latitude: " + lat + "longitude: " + lon);
 
@@ -82,6 +81,8 @@ function myFunction() {
 	user.set("course", course);
 	user.set("phonenumber", phonenumber);
 	user.set("password", "123");
+  user.set("geoLa", lat);
+  user.set("geoLo", lon);
 
   
   
