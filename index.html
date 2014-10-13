@@ -45,9 +45,6 @@ var user = Parse.Object.extend("user");
 		 <button id="submitButton" style = "margin-top:30px" onclick="myFunction()">Search Now !</button>
 	</form>
 
-  <p id="demo">Click the button to get your coordinates:</p>
-
-  <button onclick="getLocation()">Try It</button>
 
 	</center>
 
@@ -66,23 +63,8 @@ function myFunction() {
   
 
 
-  /*
-	var latitude;
-	var longitude;
-  	if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
+  
 
-	function showPosition(position) {
-    	latitude = position.coords.latitude;
-    	longitude = position.coords.longitude;
-	}
-
-	var point = new Parse.GeoPoint({latitude, longitude});
-  	user.set("geolocation", point);
-  */
   
  	//user.set("geolocation", geolocation);
 
@@ -98,7 +80,25 @@ function myFunction() {
 	});
 }
 
-var x = document.getElementById("demo");
+  var latitude;
+  var longitude;
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+
+  function showPosition(position) {
+      latitude = position.coords.latitude;
+      longitude = position.coords.longitude;
+  }
+
+  var point = new Parse.GeoPoint({latitude, longitude});
+    user.set("geolocation", point);
+
+
+  /*
+  var x = document.getElementById("demo");
   function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -111,6 +111,7 @@ var x = document.getElementById("demo");
     x.innerHTML="Latitude: " + position.coords.latitude + 
     "<br>Longitude: " + position.coords.longitude;  
   }
+  */
 
     
 </script>
