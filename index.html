@@ -56,8 +56,8 @@ function myFunction() {
    	var course=$("#course").val();
    	var phonenumber=$("#phonenumber").val();
     //var geolocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-  var latitude;
-  var longitude;
+  var lat;
+  var lon;
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else { 
@@ -66,13 +66,13 @@ function myFunction() {
 
   function showPosition(position) {
 
-      latitude = position.coords.latitude;
-      longitude = position.coords.longitude;
+      lat = position.coords.latitude;
+      lon = position.coords.longitude;
       
-      var point = new Parse.GeoPoint(latitude, longitude);
+      var point = new Parse.GeoPoint({latitude: lat, longitude: lon});
       alert("what the hell!!!");
       user.set("geolocation", point);
-      alert("latitude: " + latitude + "longitude: " + longitude);
+      alert("latitude: " + lat + "longitude: " + lon);
 
   }
 
