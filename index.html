@@ -69,11 +69,11 @@ function myFunction() {
       
       //var point = new Parse.GeoPoint({latitude: lat, longitude: lon});
       //alert("what the hell!!!");
-      
-      var geoLocation = new Parse.GeoPoint(lat, lon);
-      user.set("geolocation", geoLocation);
+      var user = new Parse.User();
+      var geoLoc = new Parse.GeoPoint(lat, lon);
+      user.set("geolocation", geoLoc);
       //alert("latitude: " + lat + "longitude: " + lon);
-    var user = new Parse.User();
+    
     var username=$("#username").val();
     var course=$("#course").val();
     var phonenumber=$("#phonenumber").val();
