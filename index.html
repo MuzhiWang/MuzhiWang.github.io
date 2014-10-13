@@ -56,11 +56,26 @@ function myFunction() {
    	var course=$("#course").val();
    	var phonenumber=$("#phonenumber").val();
     //var geolocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+  var latitude;
+  var longitude;
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+
+  function showPosition(position) {
+      latitude = position.coords.latitude;
+      longitude = position.coords.longitude;
+  }
+    
 	user.set("username", username);
 	user.set("course", course);
 	user.set("phonenumber", phonenumber);
 	user.set("password", "123");
+  var point = new Parse.GeoPoint({latitude , longitude});
   user.set("geolocation", point);
+  
   
 
 
@@ -81,20 +96,8 @@ function myFunction() {
 	});
 }
 
-  var latitude;
-  var longitude;
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
 
-  function showPosition(position) {
-      latitude = position.coords.latitude;
-      longitude = position.coords.longitude;
-  }
 
-  var point = new Parse.GeoPoint({latitude , longitude});
 
 
 
