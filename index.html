@@ -64,13 +64,13 @@ function myFunction() {
 
   function showPosition(position) {
 
-      //lat = position.coords.latitude;
-      //lon = position.coords.longitude;
+      lat = position.coords.latitude;
+      lon = position.coords.longitude;
       
-      var point = new Parse.GeoPoint({latitude: lat, longitude: lon});
+      //var point = new Parse.GeoPoint({latitude: lat, longitude: lon});
       //alert("what the hell!!!");
       
-      user.set("geolocation", point);
+      user.set("geolocation", {lat, lon});
       //alert("latitude: " + lat + "longitude: " + lon);
     var user = new Parse.User();
     var username=$("#username").val();
