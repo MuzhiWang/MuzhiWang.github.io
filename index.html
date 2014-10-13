@@ -60,19 +60,21 @@ function myFunction() {
 	user.set("phonenumber", phonenumber);
 	user.set("password", "123");
   	
-
-  	function getLocation() {
-    	if (navigator.geolocation) {
-       	 	navigator.geolocation.getCurrentPosition(showPosition);
-    	} else { 
-        	x.innerHTML = "Geolocation is not supported by this browser.";
-    	}
-	}
+	var latitude;
+	var longitude;
+  	if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
 
 	function showPosition(position) {
-    	var point = new Parse.GeoPoint({position.coords.latitude, position.coords.longitude});
-  		user.set("geolocation", point);
+    	latitude = position.coords.latitude;
+    	longitude = position.coords.longitude;
 	}
+
+	var point = new Parse.GeoPoint({position.coords.latitude, position.coords.longitude});
+  	user.set("geolocation", point);
 
  	//user.set("geolocation", geolocation);
 
