@@ -64,18 +64,7 @@ function myFunction() {
 	user.set("phonenumber", phonenumber);
 	user.set("password", "123");
   
-  function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-  }
 
-  function showPosition(position) {
-    x.innerHTML="Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude;  
-  }
 
   /*
 	var latitude;
@@ -107,7 +96,20 @@ function myFunction() {
     	alert("Error: " + error.code + " " + error.message);
   		}
 	});
+}
+
+  function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
     }
+  }
+
+  function showPosition(position) {
+    x.innerHTML="Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;  
+  }
 
     
 </script>
