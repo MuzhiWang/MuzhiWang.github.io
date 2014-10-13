@@ -69,10 +69,12 @@ function myFunction() {
       lat = position.coords.latitude;
       lon = position.coords.longitude;
       
-      var point = new Parse.GeoPoint({latitude: lat, longitude: lon});
-      alert("what the hell!!!");
-      user.set("geolocation", point);
-      alert("latitude: " + lat + "longitude: " + lon);
+      //var point = new Parse.GeoPoint({latitude: lat, longitude: lon});
+      //alert("what the hell!!!");
+      user.set("geoLa", lat);
+      user.set("geoLo", lon);
+      //user.set("geolocation", point);
+      //alert("latitude: " + lat + "longitude: " + lon);
 
   }
 
