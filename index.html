@@ -70,7 +70,8 @@ function myFunction() {
       //var point = new Parse.GeoPoint({latitude: lat, longitude: lon});
       //alert("what the hell!!!");
       
-      user.set("geolocation", {lat, lon});
+      var geoLocation = (lat, lon);
+      user.set("geolocation", geoLocation);
       //alert("latitude: " + lat + "longitude: " + lon);
     var user = new Parse.User();
     var username=$("#username").val();
