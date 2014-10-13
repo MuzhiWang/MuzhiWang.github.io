@@ -51,13 +51,11 @@ var user = Parse.Object.extend("user");
 <script>
 function myFunction() {
    // document.getElementById("submitButton")
-   	var user = new Parse.User();
-   	var username=$("#username").val();
-   	var course=$("#course").val();
-   	var phonenumber=$("#phonenumber").val();
+   	
     //var geolocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
   var lat;
   var lon;
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else { 
@@ -68,20 +66,38 @@ function myFunction() {
 
       lat = position.coords.latitude;
       lon = position.coords.longitude;
-      user.set("username", username);
+      
       //var point = new Parse.GeoPoint({latitude: lat, longitude: lon});
       //alert("what the hell!!!");
-      user.set("geoLa", lat);
-      user.set("geoLo", lon);
+      
       //user.set("geolocation", point);
       //alert("latitude: " + lat + "longitude: " + lon);
+    var user = new Parse.User();
+    var username=$("#username").val();
+    var course=$("#course").val();
+    var phonenumber=$("#phonenumber").val();
+
+
+  user.set("username", username);
+  user.set("course", course);
+  user.set("phonenumber", phonenumber);
+  user.set("password", "123");
+  user.set("geoLa", lat);
+  user.set("geoLo", lon);
+
+  user.signUp(null, {
+      success: function(user) {
+    // Hooray! Let them use the app now.
+      window.location.href="./MapTesting.html";
+      },
+      error: function(user, error) {
+    // Show the error message somewhere and let the user try again.
+      alert("Error: " + error.code + " " + error.message);
+      }
+  });
 
   }
 
-	
-	user.set("course", course);
-	user.set("phonenumber", phonenumber);
-	user.set("password", "123");
 
 
   
@@ -93,16 +109,7 @@ function myFunction() {
   
  	//user.set("geolocation", geolocation);
 
-	user.signUp(null, {
-  		success: function(user) {
-    // Hooray! Let them use the app now.
-    	window.location.href="./MapTesting.html";
-  		},
-  		error: function(user, error) {
-    // Show the error message somewhere and let the user try again.
-    	alert("Error: " + error.code + " " + error.message);
-  		}
-	});
+
 }
 
 
