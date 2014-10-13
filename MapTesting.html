@@ -113,12 +113,13 @@ function BackControl(controlDiv, map) {
 //var myCenter=new google.maps.LatLng(42.0561438,-87.67617702);
 //var myCenter = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 var myCenter;
+var latitude;
+var longitude;
 function initialize() {
   
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       myCenter = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-
       var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
@@ -139,7 +140,7 @@ function initialize() {
 
       var marker=new google.maps.Marker({
       position:myCenter,
-      icon:'222222.png'
+      icon:'111111.png'
       });
       marker.setMap(map);
 
@@ -233,6 +234,14 @@ google.maps.event.addDomListener(window, 'load', initialize);
 </head>
 
 <body>
+
+<div>
+  <header class="bar bar-nav">
+  <a class="icon icon-left-nav pull-left"></a>
+  <a class="icon icon-compose pull-right"></a>
+  <h1 class="title">Title</h1>
+</header>
+</div>
 <div id="googleMap" style="position:relative;width:320px;height:468px;">
 </div>
 
