@@ -10,7 +10,6 @@
 
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
-
 <h4 class="title" style = "margin:20px">Search Partners to Study Now ~</h4> 
 
 <script type="text/javascript">
@@ -55,14 +54,28 @@ function myFunction() {
    	var username=$("#username").val();
    	var course=$("#course").val();
    	var phonenumber=$("#phonenumber").val();
-
+    //var geolocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 	user.set("username", username);
 	user.set("course", course);
 	user.set("phonenumber", phonenumber);
 	user.set("password", "123");
- 	
- 	//window.location.href="./MapTesting.html";
-	
+  	
+
+  	function getLocation() {
+    	if (navigator.geolocation) {
+       	 	navigator.geolocation.getCurrentPosition(showPosition);
+    	} else { 
+        	x.innerHTML = "Geolocation is not supported by this browser.";
+    	}
+	}
+
+	function showPosition(position) {
+    	var point = new Parse.GeoPoint({position.coords.latitude, position.coords.longitude});
+  		user.set("geolocation", point);
+	}
+
+ 	//user.set("geolocation", geolocation);
+
 	user.signUp(null, {
   		success: function(user) {
     // Hooray! Let them use the app now.
@@ -73,8 +86,6 @@ function myFunction() {
     	alert("Error: " + error.code + " " + error.message);
   		}
 	});
-	
-
     }
 
     
