@@ -65,11 +65,15 @@ function myFunction() {
     }
 
   function showPosition(position) {
-      alert("helloo i am in showfunction");
+
       latitude = position.coords.latitude;
       longitude = position.coords.longitude;
+      
       var point = new Parse.GeoPoint(latitude, longitude);
+      alert("what the hell!!!");
       user.set("geolocation", point);
+      alert("latitude: " + latitude + "longitude: " + longitude);
+
   }
 
 	user.set("username", username);
