@@ -68,7 +68,7 @@ function myFunction() {
 
       lat = position.coords.latitude;
       lon = position.coords.longitude;
-      
+      user.set("username", username);
       //var point = new Parse.GeoPoint({latitude: lat, longitude: lon});
       //alert("what the hell!!!");
       user.set("geoLa", lat);
@@ -78,7 +78,7 @@ function myFunction() {
 
   }
 
-	user.set("username", username);
+	
 	user.set("course", course);
 	user.set("phonenumber", phonenumber);
 	user.set("password", "123");
