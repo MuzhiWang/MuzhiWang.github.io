@@ -45,6 +45,10 @@ var user = Parse.Object.extend("user");
 		 <button id="submitButton" style = "margin-top:30px" onclick="myFunction()">Search Now !</button>
 	</form>
 
+  <p id="demo">Click the button to get your coordinates:</p>
+
+  <button onclick="getLocation()">Try It</button>
+
 	</center>
 
 <script>
@@ -59,7 +63,21 @@ function myFunction() {
 	user.set("course", course);
 	user.set("phonenumber", phonenumber);
 	user.set("password", "123");
-  	
+  
+  function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+  }
+
+  function showPosition(position) {
+    x.innerHTML="Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;  
+  }
+
+  /*
 	var latitude;
 	var longitude;
   	if (navigator.geolocation) {
@@ -75,7 +93,8 @@ function myFunction() {
 
 	var point = new Parse.GeoPoint({latitude, longitude});
   	user.set("geolocation", point);
-
+  */
+  
  	//user.set("geolocation", geolocation);
 
 	user.signUp(null, {
