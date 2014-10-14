@@ -225,6 +225,10 @@ function initialize() {
             });  
 
             marker.setMap(map);
+
+            google.maps.event.addListener(marker, 'click', function() {
+              infowindow.open(map,marker);
+            });
           }
         },
         error: function(error) {
