@@ -26,6 +26,9 @@ var query = new Parse.Query(user);
 query.notEqualTo("geoLo", 0);
 query.find({
   success: function(results) {
+
+  }
+    
     alert("Successfully retrieved " + results.length + " Locations.");
     // Do something with the returned Parse.Object values
     for (var i = 0; i < results.length; i++) { 
@@ -36,6 +39,7 @@ query.find({
   error: function(error) {
     alert("Error: " + error.code + " " + error.message);
   }
+  
 });
 */
 </script>
@@ -172,6 +176,21 @@ function initialize() {
       //icon:'111111.png'
       });
       marker.setMap(map);
+
+      query.notEqualTo("geoLo", 0);
+      query.find({
+        success: function(results) { 
+          alert("Successfully retrieved " + results.length + " Locations.");
+          // Do something with the returned Parse.Object values
+          //for (var i = 0; i < results.length; i++) { 
+            var object = results[1];
+            alert(object.id + ' - '  + object.get('geoLa') + ' ' + object.get('geoLo'));
+          //}
+        },
+        error: function(error) {
+          alert("Error: " + error.code + " " + error.message);
+        }
+      });
 
       google.maps.event.addListener(marker, 'click', function() {
       infowindow.open(map,marker);
