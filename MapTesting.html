@@ -202,8 +202,15 @@ function initialize() {
           var marker = [];
           var infowindow = [];
           var otherMarkerContent = [];
+          var usernameVar = [];
+          var courseVar = [];
+          var phonenumberVar = [];
           for (var i = 0; i < results.length; i++) { 
             var object = results[i];
+            usernameVar[i] = object.get('username');
+            courseVar[i] = object.get('course');
+            phonenumberVar[i] = object.get('phonenumber');
+
             marker[i] = new google.maps.Marker({
             position : new google.maps.LatLng(object.get('geoLa'), object.get('geoLo')),
             //animation:google.maps.Animation.BOUNCE
@@ -213,9 +220,9 @@ function initialize() {
             otherMarkerContent[i] = '<div id="content">'+
             '<div id="siteNotice">'+
             '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">EECS 394                 </h1>'+
+            '<h1 id="firstHeading" class="firstHeading">usernameVar[i]</h1>'+
             '<div id="bodyContent">'+
-            '<p><b>EECS 394</b></p> <p>Norris Center</p> <p><b>Date: 09/27</b></p>'+
+            '<p><b>courseVar[i]</b></p> <p>phonenumberVar[i]</p> <p><b></b></p>'+
             '<p> You have <a href="#">6</a> friends going                     </p>'+
             '</div>'+
             '</div>';
@@ -234,8 +241,6 @@ function initialize() {
               }
             }(i));
           }
-
-          
 
           /*
 
@@ -276,6 +281,8 @@ function initialize() {
       '<p> You have <a href="#">6</a> friends going                     </p>'+
       '</div>'+
       '</div>';
+
+
 
       var infowindow = new google.maps.InfoWindow({
         //map: map,
