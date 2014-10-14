@@ -206,23 +206,24 @@ function initialize() {
             position : new google.maps.LatLng(object.get('geoLa'), object.get('geoLo')),
             //animation:google.maps.Animation.BOUNCE
             //icon:'111111.png'
-
-              var contentString = '<div id="content">'+
-              '<div id="siteNotice">'+
-              '</div>'+
-              '<h1 id="firstHeading" class="firstHeading">EECS 394                 </h1>'+
-              '<div id="bodyContent">'+
-              '<p><b>EECS 394</b></p> <p>Norris Center</p> <p><b>Date: 09/27</b></p>'+
-              '<p> You have <a href="#">6</a> friends going                     </p>'+
-              '</div>'+
-              '</div>';
-
-              var infowindow = new google.maps.InfoWindow({
-                //map: map,
-                //position: myCenter,
-                content: contentString
-              });
             });
+
+            var otherMarkerContent = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">EECS 394                 </h1>'+
+            '<div id="bodyContent">'+
+            '<p><b>EECS 394</b></p> <p>Norris Center</p> <p><b>Date: 09/27</b></p>'+
+            '<p> You have <a href="#">6</a> friends going                     </p>'+
+            '</div>'+
+            '</div>';
+
+            var infowindow = new google.maps.InfoWindow({
+              //map: map,
+              //position: myCenter,
+              content: otherMarkerContent
+            });  
+
             marker.setMap(map);
           }
         },
