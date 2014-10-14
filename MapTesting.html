@@ -182,15 +182,15 @@ function initialize() {
         success: function(results) { 
           alert("Successfully retrieved " + results.length + " Locations.");
           // Do something with the returned Parse.Object values
-          var marker[results.length];
+          //var marker[results.length];
           for (var i = 0; i < results.length; i++) { 
             var object = results[i];
-            var marker[i]=new google.maps.Marker({
+            var marker = new google.maps.Marker({
             position:myCenter,
             //animation:google.maps.Animation.BOUNCE
             //icon:'111111.png'
             });
-            marker[i].setMap(map);
+            marker.setMap(map);
           }
         },
         error: function(error) {
