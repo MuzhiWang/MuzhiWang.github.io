@@ -230,7 +230,7 @@ function initialize() {
             var innerKey = i;
             google.maps.event.addListener(marker[i], 'click', function(innerKey) {
               return function() {
-                infowindow[innerKey].open(map, markers[innerKey]);
+                infowindow[innerKey].open(map, marker[innerKey]);
               }
             }(i));
           }
