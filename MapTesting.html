@@ -201,7 +201,7 @@ function initialize() {
           // Do something with the returned Parse.Object values
           //var marker[results.length];
           //for (var i = 0; i < results.length; i++) { 
-            var object = results[2];
+            var object = results[5];
             var marker1 = new google.maps.Marker({
             position : new google.maps.LatLng(object.get('geoLa'), object.get('geoLo')),
             //animation:google.maps.Animation.BOUNCE
@@ -233,9 +233,9 @@ function initialize() {
 
           ///*
 
-            var object2 = results[4];
+            var object2 = results[6];
             var marker2 = new google.maps.Marker({
-            position : new google.maps.LatLng(object.get('geoLa'), object.get('geoLo')),
+            position : new google.maps.LatLng(object2.get('geoLa'), object2.get('geoLo')),
             //animation:google.maps.Animation.BOUNCE
             //icon:'111111.png'
             });
