@@ -186,7 +186,7 @@ function initialize() {
           for (var i = 0; i < results.length; i++) { 
             var object = results[i];
             var marker = new google.maps.Marker({
-            position:(object.get('geolocation')),
+            position:(object.get('geoLa'), object.get('geoLo')),
             //animation:google.maps.Animation.BOUNCE
             //icon:'111111.png'
             });
