@@ -200,6 +200,8 @@ function initialize() {
           alert("Successfully retrieved " + results.length + " Locations.");
           // Do something with the returned Parse.Object values
           var marker = [];
+          var infowindow = [];
+          var otherMarkerContent = [];
           for (var i = 0; i < results.length; i++) { 
             var object = results[i];
             marker[i] = new google.maps.Marker({
@@ -208,7 +210,7 @@ function initialize() {
             //icon:'111111.png'
             });
 
-            var otherMarkerContent = '<div id="content">'+
+            otherMarkerContent[i] = '<div id="content">'+
             '<div id="siteNotice">'+
             '</div>'+
             '<h1 id="firstHeading" class="firstHeading">EECS 394                 </h1>'+
@@ -218,10 +220,10 @@ function initialize() {
             '</div>'+
             '</div>';
 
-            var infowindow = new google.maps.InfoWindow({
+            infowindow[i] = new google.maps.InfoWindow({
               //map: map,
               //position: myCenter,
-              content: otherMarkerContent
+              content: otherMarkerContent[i]
             });  
 
             marker[i].setMap(map);
