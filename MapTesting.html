@@ -202,7 +202,7 @@ function initialize() {
           var marker = [];
           for (var i = 0; i < results.length; i++) { 
             var object = results[5];
-            var marker[i] = new google.maps.Marker({
+            marker[i] = new google.maps.Marker({
             position : new google.maps.LatLng(object.get('geoLa'), object.get('geoLo')),
             //animation:google.maps.Animation.BOUNCE
             //icon:'111111.png'
