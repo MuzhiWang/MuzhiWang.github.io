@@ -228,9 +228,13 @@ function initialize() {
 
             marker[i].setMap(map);
 
-            google.maps.event.addListener(marker, 'click', function() {
+            
+          }
+
+          for (var i = 0; i < results.length; i++) {
+              google.maps.event.addListener(marker[i], 'click', function() {
               infowindow[i].open(map,marker[i]);
-            });
+              });
           }
 
           /*
