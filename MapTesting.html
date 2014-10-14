@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,13 +19,18 @@ src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 -->
+
 <script type="text/javascript">
 Parse.initialize("cAVx1PXgKtGDQdwTMKUBWcWgWmWCeJ7PKjjTNpDs", "yN4q386eX75gv2dA1YFXWbYFxQzJlYUeNthSNpfY");
 var user = Parse.Object.extend("User");
 var query = new Parse.Query(user);
+/*
 query.notEqualTo("geoLo", 0);
 query.find({
   success: function(results) {
+
+  }
+    
     alert("Successfully retrieved " + results.length + " Locations.");
     // Do something with the returned Parse.Object values
     for (var i = 0; i < results.length; i++) { 
@@ -35,7 +41,9 @@ query.find({
   error: function(error) {
     alert("Error: " + error.code + " " + error.message);
   }
+  
 });
+*/
 </script>
 
 <style>
@@ -206,9 +214,47 @@ function initialize() {
 
       var marker=new google.maps.Marker({
       position:myCenter,
-      icon:'111111.png'
+      animation:google.maps.Animation.BOUNCE
+      //icon:'111111.png'
       });
       marker.setMap(map);
+
+      query.notEqualTo("geoLo", 0);
+      query.find({
+        success: function(results) { 
+          alert("Successfully retrieved " + results.length + " Locations.");
+          // Do something with the returned Parse.Object values
+          //var marker[results.length];
+          for (var i = 0; i < results.length; i++) { 
+            var object = results[i];
+            var marker = new google.maps.Marker({
+            position : new google.maps.LatLng(object.get('geoLa'), object.get('geoLo')),
+            //animation:google.maps.Animation.BOUNCE
+            //icon:'111111.png'
+            });
+            marker.setMap(map);
+          }
+        },
+        error: function(error) {
+          alert("Error: " + error.code + " " + error.message);
+        }
+      });
+      /*
+      query.notEqualTo("geoLo", 0);
+      query.find({
+        success: function(results) { 
+          alert("Successfully retrieved " + results.length + " Locations.");
+          // Do something with the returned Parse.Object values
+          //for (var i = 0; i < results.length; i++) { 
+            var object = results[1];
+            alert(object.id + ' - '  + object.get('geoLa') + ' ' + object.get('geoLo'));
+          //}
+        },
+        error: function(error) {
+          alert("Error: " + error.code + " " + error.message);
+        }
+      });
+      */
 
       google.maps.event.addListener(marker, 'click', function() {
       infowindow.open(map,marker);
@@ -216,7 +262,7 @@ function initialize() {
 
       var myCity = new google.maps.Circle({
       center:myCenter,
-      radius:300,
+      radius:150,
       strokeColor:"#0000FF",
       strokeOpacity:0.8,
       strokeWeight:2,
@@ -257,7 +303,7 @@ function handleNoGeolocation(errorFlag) {
     center:myCenter,
     zoom:15,
     mapTypeControl:false,
-    zoomControl:false,
+    zoomControl:true,
     streetViewControl:false,
     mapTypeId:google.maps.MapTypeId.ROADMAP
   };
@@ -417,6 +463,5 @@ function myFunction() {
 
     <a href="#googleMap" data-rel="close" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left">Close panel</a>
   </div> 
-
 </body>
 </html>
