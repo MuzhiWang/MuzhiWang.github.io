@@ -231,7 +231,7 @@ function initialize() {
             google.maps.event.addListener(marker[i], 'click', function(innerKey) {
               alert(this.html);
               //infowindow[i].setContent(this.html);
-              infowindow[innerKey].open(map, maker[innerKey]);
+              infowindow[innerKey].open(map, marker[innerKey]);
             });
           }
 
