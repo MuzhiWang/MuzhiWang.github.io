@@ -202,7 +202,7 @@ function initialize() {
           //var marker[results.length];
           for (var i = 0; i < results.length; i++) { 
             var object = results[i];
-            var marker = new google.maps.Marker({
+            var marker1 = new google.maps.Marker({
             position : new google.maps.LatLng(object.get('geoLa'), object.get('geoLo')),
             //animation:google.maps.Animation.BOUNCE
             //icon:'111111.png'
@@ -224,12 +224,10 @@ function initialize() {
               content: otherMarkerContent
             });  
 
-            
+            marker1.setMap(map);
 
-            google.maps.event.addListener(marker, 'click', function() {
-              infowindow.open(map,marker);
-
-            marker.setMap(map);
+            google.maps.event.addListener(marker1, 'click', function() {
+              infowindow.open(map,marker1);
             });
           }
         },
