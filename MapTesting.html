@@ -200,8 +200,8 @@ function initialize() {
           alert("Successfully retrieved " + results.length + " Locations.");
           // Do something with the returned Parse.Object values
           //var marker[results.length];
-          for (var i = 0; i < results.length; i++) { 
-            var object = results[i];
+          //for (var i = 0; i < results.length; i++) { 
+            var object = results[2];
             var marker1 = new google.maps.Marker({
             position : new google.maps.LatLng(object.get('geoLa'), object.get('geoLo')),
             //animation:google.maps.Animation.BOUNCE
@@ -229,11 +229,11 @@ function initialize() {
             google.maps.event.addListener(marker1, 'click', function() {
               infowindow.open(map,marker1);
             });
-          }
+          //}
 
           ///*
 
-            var object2 = results[2];
+            var object2 = results[4];
             var marker2 = new google.maps.Marker({
             position : new google.maps.LatLng(object.get('geoLa'), object.get('geoLo')),
             //animation:google.maps.Animation.BOUNCE
