@@ -229,7 +229,7 @@ function initialize() {
             marker[i].setMap(map);
 
             google.maps.event.addListener(marker[i], 'click', function() {
-              infowindow.open(map,marker[i]);
+              infowindow[i].open(map,marker[i]);
             });
           }
 
