@@ -240,17 +240,7 @@ function initialize() {
             //icon:'111111.png'
             });
 
-            var otherMarkerContent = '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">EECS 394                 </h1>'+
-            '<div id="bodyContent">'+
-            '<p><b>EECS 394</b></p> <p>Norris Center</p> <p><b>Date: 09/27</b></p>'+
-            '<p> You have <a href="#">6</a> friends going                     </p>'+
-            '</div>'+
-            '</div>';
-
-            var infowindow = new google.maps.InfoWindow({
+            var infowindow2 = new google.maps.InfoWindow({
               //map: map,
               //position: myCenter,
               content: otherMarkerContent
@@ -259,7 +249,7 @@ function initialize() {
             marker2.setMap(map);
 
             google.maps.event.addListener(marker2, 'click', function() {
-              infowindow.open(map,marker2);
+              infowindow2.open(map,marker2);
             });
 
 
