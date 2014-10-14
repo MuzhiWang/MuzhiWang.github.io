@@ -17,10 +17,12 @@ src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 -->
+
 <script type="text/javascript">
 Parse.initialize("cAVx1PXgKtGDQdwTMKUBWcWgWmWCeJ7PKjjTNpDs", "yN4q386eX75gv2dA1YFXWbYFxQzJlYUeNthSNpfY");
 var user = Parse.Object.extend("User");
 var query = new Parse.Query(user);
+/*
 query.notEqualTo("geoLo", 0);
 query.find({
   success: function(results) {
@@ -35,6 +37,7 @@ query.find({
     alert("Error: " + error.code + " " + error.message);
   }
 });
+*/
 </script>
 
 <style>
