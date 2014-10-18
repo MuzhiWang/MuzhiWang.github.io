@@ -181,6 +181,8 @@ function BackControl(controlDiv, map) {
 //var myCenter=new google.maps.LatLng(42.0561438,-87.67617702);
 //var myCenter = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 var myCenter;
+var courseName = "eecs355";
+var searchFlag = 1;
 function initialize() {
   
   if(navigator.geolocation) {
@@ -194,7 +196,11 @@ function initialize() {
       userinmap.set("password", "123");
       userinmap.set("geolocation", point);
 
-      query.notEqualTo("geoLo", 0);
+      if (searchFlag) {
+        query.equalTo("course", courseName);
+      } else {
+        query.notEqualTo("geoLo", 0);
+      }
       query.find({
         success: function(results) { 
           alert("Successfully retrieved " + results.length + " Locations.");
@@ -262,7 +268,8 @@ function initialize() {
             });
 
           */
-          var timeRefresh = setTimeout(query.find(),3000);
+
+          //var timeRefresh = setTimeout(query.find(),3000);
 
         },
         error: function(error) {
