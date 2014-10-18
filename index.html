@@ -403,11 +403,16 @@ function handleNoGeolocation(errorFlag) {
 
 }
 
-function myClick() {
-  //location.href("#overlayPanel");
-  //document.getElementById("elemt").href;
-  //document.getElementById("overlayPanel").addEventListener("click");
-  //$('a').href(#overlayPanel);
+document.getElementById("EECS214").onclick = function(){myClick()}; 
+
+document.getElementById("done_button").onclick = function(){searchClick()};
+
+function myClick(id) {
+  courseName = id;
+}
+
+function searchClick(){
+  searchFlag = 1;
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -538,9 +543,7 @@ function myFunction() {
       alert("Error: " + error.code + " " + error.message);
       }
   });
-
   }
-
 }
 
 </script>
