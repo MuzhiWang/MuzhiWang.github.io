@@ -423,14 +423,29 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 <div data-role="panel" id="overlayPanel" data-display="overlay"> 
     <h2>Selections:</h2>
-    <ul data-role="listview" data-filter="true" data-filter-placeholder="Search study group" data-inset="true">
-      <li><a href="#">EECS 214</a></li>
-      <li><a href="#">EECS 336</a></li>
-      <li><a href="#">EECS 355</a></li>
-      <li><a href="#">EECS 361</a></li>
-      <li><a href="#">EECS 394</a></li>
-      <li><a href="#">EECS 453</a></li>
-    </ul>
+    <form method="post" action="">
+        <fieldset data-role="controlgroup">
+          <legend>You can choose more than one intersets as below:</legend>
+          <ol id="selectable">
+          <label for="Study" class="ui-widget-content" title="Study group, Seminar, Lecture, etc.">Study</label>
+          <input type="checkbox" name="interest" id="Study" value="Study">
+          <label for="Social" class="ui-widget-content" title="Party, Ceremony, etc.">Social</label>
+          <input type="checkbox" name="interest" id="Social" value="Social">
+          <label for="Sport" class="ui-widget-content" title="Basketball, Football，Tennis, Running, etc.">Sport</label>
+          <input type="checkbox" name="interest" id="Sport" value="Sport">
+          <label for="area4" class="ui-widget-content" title="Norris Center etc.">area4</label>
+          <input type="checkbox" name="interest" id="area4" value="area4">
+          </ol>
+        </fieldset>
+        
+      
+        <label for="maxPeople">Choose the max people you want to join in:</lable>
+        <input type="range" name="maxPeople" id="maxPeople" value="1" min="1" max="20" step="1" data-highlight="true">
+        <div class="pos_right">
+          <input type="reset" data-inline="true" value="Clear">
+          <input id="done_button" type="button" data-inline="true" value="Done">
+        </div>      
+      </form>
     <a href="#googleMap" data-rel="close" ></a>
 </div> 
 
