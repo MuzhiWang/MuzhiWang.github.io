@@ -414,7 +414,35 @@ $(document).ready(function() {
   $('#eecs214').click(function() {
     myClick(this.id);
   //alert(courseName);
-})});
+  })
+
+  $('#eecs336').click(function() {
+    myClick(this.id);
+  });
+
+  $('#eecs355').click(function() {
+    myClick(this.id);
+  });
+
+  $('#eecs361').click(function() {
+    myClick(this.id);
+  });
+
+  $('#eecs394').click(function() {
+    myClick(this.id);
+  });
+
+  $('#eecs453').click(function() {
+    myClick(this.id);
+  });
+
+  $('#done_button').click(function() {
+    searchClick();
+  });
+
+});
+
+
 
 function myClick(id) {
   courseName = id;
@@ -423,6 +451,7 @@ function myClick(id) {
 
 function searchClick(){
   searchFlag = 1;
+  alert(searchFlag);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
