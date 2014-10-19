@@ -9,6 +9,9 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
  
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/ratchet/2.0.2/css/ratchet-theme-ios.css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/ratchet/2.0.2/css/ratchet-theme-ios.min.css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/ratchet/2.0.2/css/ratchet.css">
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
 
@@ -405,7 +408,7 @@ function handleNoGeolocation(errorFlag) {
 
 // document.getElementById("EECS214").onclick = function(){myClick()}; 
 
-document.getElementById("done_button").onclick = function(){searchClick()};
+//document.getElementById("done_button").onclick = function(){searchClick()};
 
 function myClick(id) {
   courseName = id;
@@ -418,6 +421,11 @@ function searchClick(){
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
+<header class="bar bar-nav">
+  <a href="#overlayPanel" class="icon icon-search pull-left"></a>
+  <a href="#formPanel" class="icon icon-compose pull-right"></a>
+  <h1 class="title">Parter Finder</h1>
+</header>
 
 </head>
 
@@ -460,13 +468,10 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 
 <div data-role="panel" id="formPanel" data-position="right" data-display="overlay">
+  
 <script type="text/javascript">
 Parse.initialize("cAVx1PXgKtGDQdwTMKUBWcWgWmWCeJ7PKjjTNpDs", "yN4q386eX75gv2dA1YFXWbYFxQzJlYUeNthSNpfY");
-
 var user = Parse.Object.extend("User");
-
-
-
 </script>
 
 
