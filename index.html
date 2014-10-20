@@ -199,7 +199,7 @@ function initialize() {
       userinmap.set("password", "123");
       userinmap.set("geolocation", point);
 
-      if (searchFlag) {
+      if (searchFlag == 1) {
         query.equalTo("course", courseName);
       } else {
         query.notEqualTo("geoLo", 0);
