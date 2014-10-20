@@ -461,7 +461,8 @@ function searchClick() {
 
 function clearClick() {
   searchFlag = 0;
-  setTimeout(function(){initialize()}, 100);
+  alert(searchFlag);
+  setTimeout(function(){initialize()}, 500);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
