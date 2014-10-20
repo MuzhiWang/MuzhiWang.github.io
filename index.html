@@ -452,6 +452,7 @@ function myClick(id) {
 function searchClick(){
   searchFlag = 1;
   alert(searchFlag);
+  setTimeout(function(){initialize()}, 500);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
