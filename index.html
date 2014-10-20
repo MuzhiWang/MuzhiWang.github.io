@@ -440,7 +440,7 @@ $(document).ready(function() {
   });
 
   $('clear_button').click(function() {
-
+    clearClick();
   });
 
 });
@@ -461,8 +461,8 @@ function searchClick() {
 
 function clearClick() {
   searchFlag = 0;
-  alert(searchFlag);
-  setTimeout(function(){initialize()}, 500);
+  //alert(searchFlag);
+  setTimeout(function(){initialize()}, 200);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
