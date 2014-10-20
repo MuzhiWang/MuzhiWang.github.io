@@ -201,13 +201,13 @@ function initialize() {
 
       if (searchFlag == 1) {
         query.equalTo("course", courseName);
-      } else {
+      } else if (searchFlag == 0) {
         query.notEqualTo("geoLo", 0);
       }
       query.find({
         success: function(results) { 
-          alert("Successfully retrieved " + results.length + " Locations.");
-          // Do something with the returned Parse.Object values
+          ale
+          Do something with the returned Parse.Object values
           var marker = [];
           var infowindow = [];
           var otherMarkerContent = [];
