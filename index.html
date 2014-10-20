@@ -413,7 +413,6 @@ function handleNoGeolocation(errorFlag) {
 $(document).ready(function() {
   $('#eecs214').click(function() {
     myClick(this.id);
-  //alert(courseName);
   })
 
   $('#eecs336').click(function() {
@@ -440,19 +439,29 @@ $(document).ready(function() {
     searchClick();
   });
 
+  $('clear_button').click(function() {
+
+  });
+
 });
 
 
 
 function myClick(id) {
   courseName = id;
-  alert(courseName);
+  //alert(courseName);
 }
 
-function searchClick(){
+function searchClick() {
   searchFlag = 1;
-  alert(searchFlag);
-  setTimeout(function(){initialize()}, 500);
+  //alert(searchFlag);
+  document.getElementById("googleMap");
+  setTimeout(function(){initialize()}, 100);
+}
+
+function clearClick() {
+  searchFlag = 0;
+  setTimeout(function(){initialize()}, 100);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -496,7 +505,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
         <label for="searchRadius">Choose the radius you want to search</lable>
         <input type="range" name="searchRadius" id="searchRadius" value="100" min="100" max="2000" step="100" data-highlight="true">
         <div class="pos_right">
-          <input type="reset" data-inline="true" value="Clear">
+          <input id="clear_button" type="reset" data-inline="true" value="Clear">
           <input id="done_button" type="button" data-inline="true" value="Done">
         </div>      
       </form>
