@@ -413,9 +413,18 @@ function handleNoGeolocation(errorFlag) {
 var clickCheck = [];
 $(document).ready(function() {
   $('#eecs214').click(function() {
-    myClick(this.id);
-    clickCheck[0] = 0;
-    alert(clickCheck[0]);
+    if (clickCheck[0] == 0) {
+      myClick(this.id);
+      clickCheck[0] = 1;
+      alert(clickCheck[0]);
+    } else {
+      courseName = undefined;
+      clickCheck[0] = 0;
+      alert(clickCheck[0]);
+    }
+    //myClick(this.id);
+    //clickCheck[0] = 0;
+    //alert(clickCheck[0]);
   })
 
   $('#eecs336').click(function() {
