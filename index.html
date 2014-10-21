@@ -410,10 +410,12 @@ function handleNoGeolocation(errorFlag) {
 // document.getElementById("EECS214").onclick = function(){myClick()}; 
 
 //document.getElementById("done_button").onclick = function(){searchClick()};
-
+var clickCheck[];
 $(document).ready(function() {
   $('#eecs214').click(function() {
     myClick(this.id);
+    clickCheck[0] = 0;
+    alert(clickCheck[0]);
   })
 
   $('#eecs336').click(function() {
