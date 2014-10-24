@@ -407,6 +407,15 @@ function handleNoGeolocation(errorFlag) {
 
 }
 
+//Overlay Panel CSS setting
+#overlayPanel {
+  width: 200px;
+  border: 1px solid #000;
+  border-right: none;
+  backgroud: rgba(0,0,0,5);
+  margin: -1px;
+}
+
 // document.getElementById("EECS214").onclick = function(){myClick()}; 
 
 //document.getElementById("done_button").onclick = function(){searchClick()};
@@ -496,7 +505,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <h2>Selections:</h2>
     <form method="post" action="">
       <fieldset data-role="controlgroup" data-iconpos="right">
-        <legend>Vertical, icon right:</legend>
+        <legend>Course nearby:</legend>
         <input type="radio" name="interest" id="eecs214" value="off">
         <label for="eecs214">EECS 214</label>
         <input type="radio" name="interest" id="eecs336" value="off">
@@ -619,7 +628,7 @@ function myFunction() {
   user.signUp(null, {
       success: function(user) {
     // Hooray! Let them use the app now.
-      window.location.href="./MapTesting.html";
+      window.location.href="./index.html";
       },
       error: function(user, error) {
     // Show the error message somewhere and let the user try again.
