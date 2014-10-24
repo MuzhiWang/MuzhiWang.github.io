@@ -57,7 +57,7 @@ query.find({
 
 /*Overlay Panel CSS setting*/
 #overlayPanel {
-  width: 200px;
+  width: 300px;
   border: 1px solid #000;
   border-right: none;
   backgroud: rgba(0,0,0,5);
@@ -289,16 +289,28 @@ function initialize() {
           alert("Error: " + error.code + " " + error.message);
         }
       });      
-
-      var contentString = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">EECS 394                 </h1>'+
-      '<div id="bodyContent">'+
-      '<p><b>EECS 394</b></p> <p>Norris Center</p> <p><b>Date: 09/27</b></p>'+
-      '<p> You have <a href="#">6</a> friends going                     </p>'+
-      '</div>'+
-      '</div>';
+		
+	  var contentString;
+      query.notEqualTo("geoLo", 0);
+      query.find({
+		  success: function(results) {
+		  var object = results[0];
+          var usernameCur = object.get('username');
+          var courseCur = object.get('course');
+          var phonenumberCur = object.get('phonenumber');
+		
+		  contentString = '<div id="content">'+
+            '<div id="siteNotice">'+ usernameCur + ' </div>'+
+            '<h1 id="firstHeading" class="firstHeading"> Name: ' + usernameCur + '</h1>' +
+            '<div id="bodyContent">' +
+            '<p><b> Course: ' + courseCur + '</b></p>' + '<p> Phone Number is: ' + phonenumberCur + '</p>' + '<p><b></b></p>'+ 
+            '</div>'+
+            '</div>';
+			}
+		  error: function(error) {
+			  alert("Error: " + error.code + " " + error.message);
+			}
+      });
 
 
 
@@ -316,24 +328,6 @@ function initialize() {
       //icon:'111111.png'
       });
       marker.setMap(map);
-
-
-      /*
-      query.notEqualTo("geoLo", 0);
-      query.find({
-        success: function(results) { 
-          alert("Successfully retrieved " + results.length + " Locations.");
-          // Do something with the returned Parse.Object values
-          //for (var i = 0; i < results.length; i++) { 
-            var object = results[1];
-            alert(object.id + ' - '  + object.get('geoLa') + ' ' + object.get('geoLo'));
-          //}
-        },
-        error: function(error) {
-          alert("Error: " + error.code + " " + error.message);
-        }
-      });
-      */
 
       google.maps.event.addListener(marker, 'click', function() {
       infowindow.open(map,marker);
