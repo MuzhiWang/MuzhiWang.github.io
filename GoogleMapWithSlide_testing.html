@@ -2,14 +2,13 @@
 <html>
 <head>
 
-
+<script src="http://www.parsecdn.com/js/parse-1.3.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
-
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 <!--  
 <script
@@ -17,6 +16,10 @@ src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 -->
+
+<script type="text/javascript">
+Parse.initialize("cAVx1PXgKtGDQdwTMKUBWcWgWmWCeJ7PKjjTNpDs", "yN4q386eX75gv2dA1YFXWbYFxQzJlYUeNthSNpfY");
+</script>
 
 <style>
 .icon_Size{
@@ -130,8 +133,8 @@ function initialize() {
       '</div>';
 
       var infowindow = new google.maps.InfoWindow({
-        //map: map,
-        //position: myCenter,
+        map: map,
+        position: myCenter,
         content: contentString
       });
 
@@ -142,10 +145,6 @@ function initialize() {
       icon:'111111.png'
       });
       marker.setMap(map);
-
-      google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(map,marker);
-      });
 
       var myCity = new google.maps.Circle({
       center:myCenter,

@@ -8,6 +8,9 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
  
+<!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/ratchet/2.0.2/css/ratchet-theme-ios.css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/ratchet/2.0.2/css/ratchet-theme-ios.min.css"> -->
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/ratchet/2.0.2/css/ratchet.css">
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
 
@@ -22,7 +25,7 @@ src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6
 <script type="text/javascript">
 Parse.initialize("cAVx1PXgKtGDQdwTMKUBWcWgWmWCeJ7PKjjTNpDs", "yN4q386eX75gv2dA1YFXWbYFxQzJlYUeNthSNpfY");
 var user = Parse.Object.extend("User");
-var query = new Parse.Query(user);
+//var query = new Parse.Query(user);
 /*
 query.notEqualTo("geoLo", 0);
 query.find({
@@ -49,6 +52,43 @@ query.find({
 .icon_Size{
   width:20px;
   height:20px;
+}
+
+/*Overlay Panel CSS setting*/
+/*#overlayPanel {
+  width: 85%;
+  border: 1px solid #000;
+  border-right: none;
+  backgroud: rgba(5,5,5,5);
+  margin: -1px;
+}*/
+
+/*#overlayPanel-popup {
+    right: 0 !important;
+    left: auto !important;
+}*/
+div.background
+{
+    opacity:0.6;
+    filter:alpha(opacity=100);
+}
+
+#overlayPanel {
+    width: 85%;
+    border: 1px solid #000;
+    border-right: none;
+    margin: -1px 0;
+    background-image: url(111111.png);
+    opacity:0.75;
+    filter:alpha(opacity = 100);
+}
+/*#overlayForm{
+    opacity:0.9;
+    filter:alpha(opacity = 100);
+}*/
+
+#formPanel {
+  width: 85%;
 }
 </style>
 
@@ -180,9 +220,12 @@ function BackControl(controlDiv, map) {
 //var myCenter=new google.maps.LatLng(42.0561438,-87.67617702);
 //var myCenter = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 var myCenter;
+var courseName;
+var searchFlag = 0;
 function initialize() {
   
   if(navigator.geolocation) {
+    var query = new Parse.Query(user);
     navigator.geolocation.getCurrentPosition(function(position) {
       myCenter = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
       
@@ -193,7 +236,11 @@ function initialize() {
       userinmap.set("password", "123");
       userinmap.set("geolocation", point);
 
-      query.notEqualTo("geoLo", 0);
+      if (searchFlag == 1) {
+        query.equalTo("course", courseName);
+      } else if (searchFlag == 0) {
+        query.notEqualTo("geoLo", 0);
+      }
       query.find({
         success: function(results) { 
           alert("Successfully retrieved " + results.length + " Locations.");
@@ -204,11 +251,13 @@ function initialize() {
           var usernameVar = [];
           var courseVar = [];
           var phonenumberVar = [];
+          var email = [];
           for (var i = 0; i < results.length; i++) { 
             var object = results[i];
             usernameVar[i] = object.get('username');
             courseVar[i] = object.get('course');
             phonenumberVar[i] = object.get('phonenumber');
+            email[i] = object.get('email');
 
             marker[i] = new google.maps.Marker({
             position : new google.maps.LatLng(object.get('geoLa'), object.get('geoLo')),
@@ -216,12 +265,11 @@ function initialize() {
             //icon:'111111.png'
             });
 
-            otherMarkerContent[i] = '<div id="content">'+
-            '<div id="siteNotice">usernameVar[i] </div>'+
-            '<h1 id="firstHeading" class="firstHeading">usernameVar[i]</h1>'+
-            '<div id="bodyContent">'+
-            '<p><b>courseVar[i]</b></p> <p>phonenumberVar[i]</p> <p><b></b></p>'+
-            '<p> You have <a href="#">6</a> friends going                     </p>'+
+            otherMarkerContent[i] = '<div id="content" style="background-image: url(111111.png)">'+
+            '<div id="siteNotice">'+ usernameVar[i] + ' </div>'+
+            '<h1 id="firstHeading" class="firstHeading"> Name: ' + usernameVar[i] + '</h1>' +
+            '<div id="bodyContent">' +
+            '<p><b> Course: ' + courseVar[i] + '</b></p>' + '<p> Phone Number is: ' + '<a href="mailto:' + email[i] + '" target="_blank">' + email[i] + '</a></p>' + '<p><b></b></p>'+ 
             '</div>'+
             '</div>';
 
@@ -263,30 +311,43 @@ function initialize() {
 
           */
 
+          //var timeRefresh = setTimeout(query.find(),3000);
 
         },
         error: function(error) {
           alert("Error: " + error.code + " " + error.message);
         }
       });      
+		
+	  // var contentString;
+      // query.notEqualTo("geoLo", 0);
+      // query.find({
+		  // success: function(results) {
+		  // var object = results[0];
+          // var usernameCur = object.get('username');
+          // var courseCur = object.get('course');
+          // var phonenumberCur = object.get('phonenumber');
+		
+		  // contentString = '<div id="content">'+
+            // '<div id="siteNotice">'+ usernameCur + ' </div>'+
+            // '<h1 id="firstHeading" class="firstHeading"> Name: ' + usernameCur + '</h1>' +
+            // '<div id="bodyContent">' +
+            // '<p><b> Course: ' + courseCur + '</b></p>' + '<p> Phone Number is: ' + phonenumberCur + '</p>' + '<p><b></b></p>'+ 
+            // '</div>'+
+            // '</div>';
+			// },
+		  // error: function(error) {
+			  // alert("Error: " + error.code + " " + error.message);
+			// }
+      // });
 
-      var contentString = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">EECS 394                 </h1>'+
-      '<div id="bodyContent">'+
-      '<p><b>EECS 394</b></p> <p>Norris Center</p> <p><b>Date: 09/27</b></p>'+
-      '<p> You have <a href="#">6</a> friends going                     </p>'+
-      '</div>'+
-      '</div>';
 
 
-
-      var infowindow = new google.maps.InfoWindow({
-        //map: map,
-        //position: myCenter,
-        content: contentString
-      });
+      // var infowindow = new google.maps.InfoWindow({
+        // //map: map,
+        // //position: myCenter,
+        // content: contentString
+      // });
 
       map.setCenter(myCenter);
 
@@ -297,27 +358,9 @@ function initialize() {
       });
       marker.setMap(map);
 
-
-      /*
-      query.notEqualTo("geoLo", 0);
-      query.find({
-        success: function(results) { 
-          alert("Successfully retrieved " + results.length + " Locations.");
-          // Do something with the returned Parse.Object values
-          //for (var i = 0; i < results.length; i++) { 
-            var object = results[1];
-            alert(object.id + ' - '  + object.get('geoLa') + ' ' + object.get('geoLo'));
-          //}
-        },
-        error: function(error) {
-          alert("Error: " + error.code + " " + error.message);
-        }
-      });
-      */
-
-      google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(map,marker);
-      });
+      // google.maps.event.addListener(marker, 'click', function() {
+      // infowindow.open(map,marker);
+      // });
 
       var myCity = new google.maps.Circle({
       center:myCenter,
@@ -396,51 +439,142 @@ function handleNoGeolocation(errorFlag) {
 
 }
 
-function myClick() {
-  //location.href("#overlayPanel");
-  //document.getElementById("elemt").href;
-  //document.getElementById("overlayPanel").addEventListener("click");
-  //$('a').href(#overlayPanel);
+
+// document.getElementById("EECS214").onclick = function(){myClick()}; 
+
+//document.getElementById("done_button").onclick = function(){searchClick()};
+var clickCheck = [];
+clickCheck[0] = 0;
+$(document).ready(function() {
+  $('#eecs214').click(function() {
+    myClick(this.id);
+    // if (clickCheck[0] == 0) {
+    //   myClick(this.id);
+    //   clickCheck[0] = 1;
+    //   alert(clickCheck[0]);
+    // } else {
+    //   courseName = undefined;
+    //   clickCheck[0] = 0;
+    //   alert(clickCheck[0]);
+    // }
+  })
+
+  $('#eecs336').click(function() {
+    myClick(this.id);
+  });
+
+  $('#eecs355').click(function() {
+    myClick(this.id);
+  });
+
+  $('#eecs361').click(function() {
+    myClick(this.id);
+  });
+
+  $('#eecs394').click(function() {
+    myClick(this.id);
+  });
+
+  $('#eecs453').click(function() {
+    myClick(this.id);
+  });
+
+  $('#done_button').click(function() {
+    searchClick();
+  });
+
+  $('#clear_button').click(function() {
+    clearClick();
+  });
+
+});
+
+
+
+function myClick(id) {
+  courseName = id;
+  //alert(courseName);
+}
+
+function searchClick() {
+  searchFlag = 1;
+  //alert(searchFlag);
+  //document.getElementById("googleMap").open();
+  setTimeout(function(){initialize()}, 100);
+}
+
+function clearClick() {
+  searchFlag = 0;
+  //alert(searchFlag);
+  //document.getElementById("googleMap").Show();
+  //document.getElementById("overlayPanel").close();
+  setTimeout(function(){initialize()}, 200);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
+<header class="bar bar-nav">
+  <a href="#overlayPanel" class="icon icon-search pull-left"></a>
+  <a href="#formPanel" class="icon icon-compose pull-right"></a>
+  <h1 class="title">Parter Finder</h1>
+</header>
 
 </head>
 
 <body>
-<div id="googleMap" style="position:relative;width:320px;height:568px;">
+<div id="googleMap" style="position:relative;width:100%;height:568px;">
+</div>
+
+<div date-role="page">
+<div data-role="panel" id="overlayPanel" data-display="push" > 
+<!-- <div data-role="panel" id="overlayPanel" data-corners="false" data-theme="none" data-shadow="false"  data-tolerance="0,0"> -->
+    <div class="background">
+    <h2>Selections:</h2>
+    <form method="post" action="">
+      <fieldset data-role="controlgroup" data-iconpos="right">
+        <legend>Course nearby:</legend>
+        <input type="radio" name="interest" id="eecs214" value="off">
+        <label for="eecs214">EECS 214</label>
+        <input type="radio" name="interest" id="eecs336" value="off">
+        <label for="eecs336">EECS 336</label>
+        <input type="radio" name="interest" id="eecs355" value="off">
+        <label for="eecs355">EECS 355</label>
+        <input type="radio" name="interest" id="eecs361" value="off">
+        <label for="eecs361">EECS 361</label>
+        <input type="radio" name="interest" id="eecs394" value="off">
+        <label for="eecs394">EECS 394</label>
+        <input type="radio" name="interest" id="eecs453" value="off">
+        <label for="eecs453">EECS 453</label>
+      </fieldset>
+        
+      
+        <!-- <label for="slider-fill">Choose the radius you want to search</lable>
+        <div>
+        <p>Choose the radius you want to search</p>
+        <input type="range" name="slider-fill" id="slider-fill" value="100" min="100" max="2000" step="100" data-highlight="true">
+        </div> -->
+        <div class="pos_right">
+          <input id="clear_button" href="#googleMap" type="reset" data-inline="true" value="Clear">
+          <!-- <input id="done_button" type="reset" data-inline="true" value="Done"> -->
+          <a id="done_button" href="#googleMap" data-rel="close" class="ui-btn ui-btn-inline ui-shadow ui-corner-all">Search</a>
+        </div>      
+      </form>
+      </div>
+      <!--<a href="#googleMap" data-rel="close" ></a> -->
+</div> 
 </div>
 
 
-<div data-role="panel" id="overlayPanel" data-display="overlay"> 
-    <h2>Selections:</h2>
-    <ul data-role="listview" data-filter="true" data-filter-placeholder="Search study group" data-inset="true">
-      <li><a href="#">EECS 214</a></li>
-      <li><a href="#">EECS 336</a></li>
-      <li><a href="#">EECS 355</a></li>
-      <li><a href="#">EECS 361</a></li>
-      <li><a href="#">EECS 394</a></li>
-      <li><a href="#">EECS 453</a></li>
-    </ul>
-    <a href="#googleMap" data-rel="close" ></a>
-</div> 
+<div data-role="panel" class="background" id="formPanel" data-position="right" data-display="overlay">
 
-
-<div data-role="panel" id="formPanel" data-position="right" data-display="overlay">
 <script type="text/javascript">
 Parse.initialize("cAVx1PXgKtGDQdwTMKUBWcWgWmWCeJ7PKjjTNpDs", "yN4q386eX75gv2dA1YFXWbYFxQzJlYUeNthSNpfY");
-
 var user = Parse.Object.extend("User");
-
-
-
 </script>
 
-</head>
 
-<body>
+
   <center>
   <center><img src= "logo.png" alt= "Logo" style = "width:100px; height:100px"></center>
   
@@ -506,21 +640,17 @@ function myFunction() {
   user.signUp(null, {
       success: function(user) {
     // Hooray! Let them use the app now.
-      window.location.href="./MapTesting.html";
+      window.location.href="./index.html";
       },
       error: function(user, error) {
     // Show the error message somewhere and let the user try again.
       alert("Error: " + error.code + " " + error.message);
       }
   });
-
   }
-
 }
 
 </script>
-
-    <a href="#googleMap" data-rel="close" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left">Close panel</a>
-  </div> 
+</div> 
 </body>
 </html>
