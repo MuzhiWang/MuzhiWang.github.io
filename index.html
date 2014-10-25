@@ -56,12 +56,26 @@ query.find({
 }
 
 /*Overlay Panel CSS setting*/
-#overlayPanel {
+/*#overlayPanel {
   width: 85%;
-  /*border: 1px solid #000;
+  border: 1px solid #000;
   border-right: none;
   backgroud: rgba(5,5,5,5);
-  margin: -1px;*/
+  margin: -1px;
+}*/
+#overlayPanel-popup {
+    right: 0 !important;
+    left: auto !important;
+}
+#overlayPanel {
+    width: 450px;
+    border: 1px solid #000;
+    border-right: none;
+    background: rgba(0,0,0,.5);
+    margin: -1px 0;
+}
+#overlayPanel .ui-btn {
+    margin: 2em 15px;
 }
 
 #formPanel {
