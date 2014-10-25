@@ -500,7 +500,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
 </div>
 
 <div date-role="page">
-<div data-role="panel" id="overlayPanel" data-display="push" data-swipe-close="false"> 
+<!-- <div data-role="panel" id="overlayPanel" data-display="push"> --> 
+  <div data-role="popup" id="overlayPanel" data-corners="false" data-theme="none" data-shadow="false"  data-tolerance="0,0">
     <h2>Selections:</h2>
     <form method="post" action="">
       <fieldset data-role="controlgroup" data-iconpos="right">
