@@ -77,9 +77,10 @@ query.find({
     opacity:0.75;
     filter:alpha(opacity = 100);
 }
-/*#overlayPanel .ui-btn {
-    margin: 2em 15px;
-}*/
+#overlayForm{
+    opacity:0.9;
+    filter:alpha(opacity = 100);
+}
 
 #formPanel {
   width: 85%;
@@ -524,7 +525,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <div data-role="panel" id="overlayPanel" data-display="push" > 
 <!-- <div data-role="panel" id="overlayPanel" data-corners="false" data-theme="none" data-shadow="false"  data-tolerance="0,0"> -->
     <h2>Selections:</h2>
-    <form method="post" action="">
+    <form method="post" action="" id="overlayForm">
       <fieldset data-role="controlgroup" data-iconpos="right">
         <legend>Course nearby:</legend>
         <input type="radio" name="interest" id="eecs214" value="off">
