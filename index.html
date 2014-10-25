@@ -68,6 +68,12 @@ query.find({
     right: 0 !important;
     left: auto !important;
 }*/
+div.background
+{
+    opacity:0.9;
+    filter:alpha(opacity=100);
+}
+
 #overlayPanel {
     width: 85%;
     border: 1px solid #000;
@@ -524,6 +530,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <div date-role="page">
 <div data-role="panel" id="overlayPanel" data-display="push" > 
 <!-- <div data-role="panel" id="overlayPanel" data-corners="false" data-theme="none" data-shadow="false"  data-tolerance="0,0"> -->
+    <div class="background">
     <h2>Selections:</h2>
     <form method="post" action="" id="overlayForm">
       <fieldset data-role="controlgroup" data-iconpos="right">
@@ -554,6 +561,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
           <a id="done_button" href="#googleMap" data-rel="close" class="ui-btn ui-btn-inline ui-shadow ui-corner-all">Search</a>
         </div>      
       </form>
+      </div>
       <!--<a href="#googleMap" data-rel="close" ></a> -->
 </div> 
 </div>
