@@ -57,11 +57,16 @@ query.find({
 
 /*Overlay Panel CSS setting*/
 #overlayPanel {
-  width: 250px;
+  width: 70%;
+  height: 100%;
 /*  border: 1px solid #000;
   border-right: none;
   backgroud: rgba(5,5,5,5);
   margin: -1px;*/
+}
+
+#formPanel {
+  width: 70%;
 }
 </style>
 
@@ -492,7 +497,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 </head>
 
 <body>
-<div id="googleMap" style="position:relative;width:100%;height:568px;">
+<div id="googleMap" style="position:relative;width:100%;height:90%;">
 </div>
 
 
@@ -526,8 +531,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
           <!-- <input id="done_button" type="reset" data-inline="true" value="Done"> -->
           <a id="done_button" href="#pageone" data-rel="close" class="ui-btn ui-btn-inline ui-shadow ui-corner-all">Search</a>
         </div>      
-      </form><!-- 
-    <a href="#googleMap" data-rel="close" ></a> -->
+      </form>
+      <!--<a href="#googleMap" data-rel="close" ></a> -->
 </div> 
 
 
