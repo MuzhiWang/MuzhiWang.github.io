@@ -498,7 +498,8 @@ function searchClick() {
 function clearClick() {
   searchFlag = 0;
   //alert(searchFlag);
-  document.getElementById("googleMap").Show();
+  //document.getElementById("googleMap").Show();
+  document.getElementById("overlayPanel").close();
   setTimeout(function(){initialize()}, 200);
 }
 
