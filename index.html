@@ -290,35 +290,35 @@ function initialize() {
         }
       });      
 		
-	  var contentString;
-      query.notEqualTo("geoLo", 0);
-      query.find({
-		  success: function(results) {
-		  var object = results[0];
-          var usernameCur = object.get('username');
-          var courseCur = object.get('course');
-          var phonenumberCur = object.get('phonenumber');
+	  // var contentString;
+      // query.notEqualTo("geoLo", 0);
+      // query.find({
+		  // success: function(results) {
+		  // var object = results[0];
+          // var usernameCur = object.get('username');
+          // var courseCur = object.get('course');
+          // var phonenumberCur = object.get('phonenumber');
 		
-		  contentString = '<div id="content">'+
-            '<div id="siteNotice">'+ usernameCur + ' </div>'+
-            '<h1 id="firstHeading" class="firstHeading"> Name: ' + usernameCur + '</h1>' +
-            '<div id="bodyContent">' +
-            '<p><b> Course: ' + courseCur + '</b></p>' + '<p> Phone Number is: ' + phonenumberCur + '</p>' + '<p><b></b></p>'+ 
-            '</div>'+
-            '</div>';
-			},
-		  error: function(error) {
-			  alert("Error: " + error.code + " " + error.message);
-			}
-      });
+		  // contentString = '<div id="content">'+
+            // '<div id="siteNotice">'+ usernameCur + ' </div>'+
+            // '<h1 id="firstHeading" class="firstHeading"> Name: ' + usernameCur + '</h1>' +
+            // '<div id="bodyContent">' +
+            // '<p><b> Course: ' + courseCur + '</b></p>' + '<p> Phone Number is: ' + phonenumberCur + '</p>' + '<p><b></b></p>'+ 
+            // '</div>'+
+            // '</div>';
+			// },
+		  // error: function(error) {
+			  // alert("Error: " + error.code + " " + error.message);
+			// }
+      // });
 
 
 
-      var infowindow = new google.maps.InfoWindow({
-        //map: map,
-        //position: myCenter,
-        content: contentString
-      });
+      // var infowindow = new google.maps.InfoWindow({
+        // //map: map,
+        // //position: myCenter,
+        // content: contentString
+      // });
 
       map.setCenter(myCenter);
 
@@ -329,9 +329,9 @@ function initialize() {
       });
       marker.setMap(map);
 
-      google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(map,marker);
-      });
+      // google.maps.event.addListener(marker, 'click', function() {
+      // infowindow.open(map,marker);
+      // });
 
       var myCity = new google.maps.Circle({
       center:myCenter,
